@@ -1,4 +1,8 @@
 open PThread
+fun exit reason = (
+    print (reason ^ "\n");
+    OS.Process.exit OS.Process.failure
+)
 
 
 val fromUnitPtr = SMLSharp_Builtin.Pointer.fromUnitPtr
@@ -18,18 +22,27 @@ in
 end
                    
 val () = let
-    val thread_ref: pthread_t ref = ref _NULL
+    val tattr = ref (Pointer.NULL ())
+    val s = pthread_attr_init(tattr)
+    val () = if s <> 0
+             then exit "pthread_attr_init"
+             else ()                             
+    val thread_ref = ref (Pointer.NULL ())
     val arg = sml_str_new "Hello world\n"
-    val s = pthread_create(thread_ref, ref (Pointer.NULL()), threadFunc, toUnitPtr arg)
+    val s = pthread_create(thread_ref, tattr, threadFunc, toUnitPtr arg)
     val t1 = !thread_ref
     val () = if s <> 0
-             then raise Fail "thread creation failed"
+             then exit "thread creation failed"
+             else ()
+    val s = pthread_attr_destroy(tattr)
+    val () = if s <> 0
+             then exit "pthread_attr_destroy"
              else ()
     val () = print "Message from main()\n";
-    val resRef = ref _NULL
+    val resRef = ref (Pointer.NULL ())
     val s = pthread_join(t1, resRef)
     val () = if s <> 0
-             then raise Fail "thread creation failed"
+             then exit "thread creation failed"
              else ()
     (* val () = print ("Thread returned" ^ Int.toString  (!resRef) ^ "\n") *)
 in

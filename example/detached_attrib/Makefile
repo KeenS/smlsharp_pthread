@@ -1,16 +1,17 @@
 SMLSHARP=/usr/local/bin/smlsharp
 SMLSHARP_FLAGS=-I../src
 LDFLAGS=
-TARGET=simple_thread
-
+TARGET=detached_attrib
 SRC=$(TARGET).sml
 OBJ=$(SRC:.sml=.o)
+
 ENTRY_POINT=$(TARGET).smi
 
 
 all: $(TARGET)
+
 run: $(TARGET)
-	 ./$(TARGET)
+	./$(TARGET)
 
 $(TARGET): $(OBJ)
 	$(MAKE) -C ../../src all

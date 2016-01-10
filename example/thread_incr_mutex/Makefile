@@ -1,7 +1,7 @@
 SMLSHARP=/usr/local/bin/smlsharp
 SMLSHARP_FLAGS=-I../src
 LDFLAGS=
-TARGET=simple_thread
+TARGET=thread_incr_mutex
 
 SRC=$(TARGET).sml
 OBJ=$(SRC:.sml=.o)
