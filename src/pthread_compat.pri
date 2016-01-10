@@ -1,3 +1,5 @@
+(* ====END_OF_HEADER==== *)
+
 _require "basis.smi"
 
 structure PThreadCompat = struct

@@ -23,5 +23,6 @@ pthread.smi: pthread_compat.smi
 clean:
 	rm -f $(OBJ) $(TEST_OBJ)
 	rm -f $(TARGET) $(TEST_TARGET)
+	rm -f pthread_compat.sml pthread_compat.smi
 
 .PHONY: all test clean	
