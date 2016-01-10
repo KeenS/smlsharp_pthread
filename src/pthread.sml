@@ -1,11 +1,18 @@
 structure PThread = struct
     type pthread_t = unit ptr
+    (* FIXME *)
     type pthread_mutex_t = unit ptr
+    (* FIXME *)
     type pthread_mutexattr_t = unit ptr
+    (* FIXME *)
     type pthread_cond_t = unit ptr
+    (* FIXME *)
     type pthread_condattr_t = unit ptr
+    (* FIXME *)
     type pthread_key_t = unit ptr
+    (* FIXME *)
     type pthread_once_t = unit ptr
+    (* FIXME *)
     type pthread_attr_t = unit ptr
 
     (*** pthread_* ***)
