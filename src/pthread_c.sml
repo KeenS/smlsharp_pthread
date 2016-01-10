@@ -1,7 +1,0 @@
-datatype dummy = $ of int
-(*
-
-
-
-
-*)

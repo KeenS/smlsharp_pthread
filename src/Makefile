@@ -3,8 +3,8 @@ SED=sed
 SMLSHARP=/usr/local/bin/smlsharp
 SMLSHARP_FLAGS=-I../src
 LDFLAGS=
-SRC=pthread.sml pthread_c.pre
-OBJ=$(patsubst %.sml, %.o, $(patsubst %.pre, %.sml, $(SRC)))
+SRC=pthread.sml pthread_compat.prl
+OBJ=$(patsubst %.sml, %.o, $(patsubst %.prl, %.sml, $(SRC)))
 
 
 all: $(OBJ)
@@ -13,7 +13,11 @@ all: $(OBJ)
 %.o: %.sml %.smi
 	$(SMLSHARP) $(SMLSHARP_CFLAGS) $(SMLSHARP_FLAGS) -c -o $@ $<
 
-%.sml: %.pre
+pthread.smi: pthread_compat.smi
+
+%.sml: %.prl
+	$(CPP) -pipe -E $< | $(SED) '1,/====END_OF_HEADER====/d;/^#/d' > $@
+%.smi: %.pri
 	$(CPP) -pipe -E $< | $(SED) '1,/====END_OF_HEADER====/d;/^#/d' > $@
 
 clean:

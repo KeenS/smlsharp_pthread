@@ -1,19 +1,14 @@
 structure PThread = struct
-    type pthread_t = unit ptr
-    (* FIXME *)
-    type pthread_mutex_t = unit ptr
-    (* FIXME *)
-    type pthread_mutexattr_t = unit ptr
-    (* FIXME *)
-    type pthread_cond_t = unit ptr
-    (* FIXME *)
-    type pthread_condattr_t = unit ptr
-    (* FIXME *)
-    type pthread_key_t = unit ptr
-    (* FIXME *)
-    type pthread_once_t = unit ptr
-    (* FIXME *)
-    type pthread_attr_t = unit ptr
+    open PThreadCompat
+    (* type pthread_t = PThreadCompat.pthread_t *)
+    (* type pthread_attr_t = PThreadCompat.pthread_attr_t *)
+    (* type pthread_mutex_t = PThreadCompat.pthread_mutex_t *)
+    (* type pthread_mutexattr_t = PThreadCompat.pthread_mutexattr_t *)
+    (* type pthread_cond_t = PThreadCompat.pthread_cond_t *)
+    (* type pthread_condattr_t = PThreadCompat.pthread_condattr_t *)
+    (* type pthread_key_t = PThreadCompat.pthread_key_t *)
+    (* type pthread_once_t = PThreadCompat.pthread_once_t *)
+
 
     (*** pthread_* ***)
     (* int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg); *)

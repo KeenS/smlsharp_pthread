@@ -22,12 +22,12 @@ in
 end
                    
 val () = let
-    val tattr = ref (Pointer.NULL ())
+    val tattr = ref (pthread_attr_new())
     val s = pthread_attr_init(tattr)
     val () = if s <> 0
              then exit "pthread_attr_init"
              else ()                             
-    val thread_ref = ref (Pointer.NULL ())
+    val thread_ref = ref (pthread_new())
     val arg = sml_str_new "Hello world\n"
     val s = pthread_create(thread_ref, tattr, threadFunc, toUnitPtr arg)
     val t1 = !thread_ref

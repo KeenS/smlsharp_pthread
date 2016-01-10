@@ -6,7 +6,7 @@ fun exit reason = (
 )
 
 val glob = ref 0
-val mtx = ref (Pointer.NULL())
+val mtx = ref (pthread_mutex_new ())
 
 fun threadFunc _ = let
     val loops = 10000
@@ -29,7 +29,7 @@ in
 end
 
 fun main () = let
-    val mtxattr = ref (Pointer.NULL())
+    val mtxattr = ref (pthread_mutexattr_new ())
     val s = pthread_mutexattr_init(mtxattr)
     val () = if s <> 0
              then exit "pthread_mutexattr_init"
@@ -43,9 +43,9 @@ fun main () = let
              then exit "pthread_mutexattr_destroy"
              else ()
 
-    val t1 = ref (Pointer.NULL ())
-    val t2 = ref (Pointer.NULL ())
-    val tattr = ref (Pointer.NULL ())
+    val t1 = ref (pthread_new ())
+    val t2 = ref (pthread_new ())
+    val tattr = ref (pthread_attr_new ())
     val s = pthread_attr_init(tattr)
     val () = if s <> 0
              then exit "pthread_attr_init"

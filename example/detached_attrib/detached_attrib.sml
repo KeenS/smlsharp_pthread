@@ -1,6 +1,6 @@
 open PThread
-val thr = ref (Pointer.NULL ())
-val attr = ref (Pointer.NULL () )
+val thr = ref (pthread_new())
+val attr = ref (pthread_attr_new())
 val s = pthread_attr_init(attr)
 val () = if s <> 0
          then raise Fail "pthread_attr_init\n"
