@@ -1,0 +1,7 @@
+datatype dummy = $ of int
+(*
+
+
+
+
+*)
