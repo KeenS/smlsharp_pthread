@@ -24,9 +24,9 @@ structure PThread = struct
 
     (*** pthread_attr* ***)
     (* int pthread_attr_destroy(pthread_attr_t *attr); *)
-    val pthread_attr_destroy = _import "pthread_attr_destroy": (pthread_attr_t) -> int
-    (* pthread_attr_getaffinity_np *)
-    (* pthread_attr_getdetachstate *)
+    val pthread_attr_destroy = _import "pthread_attr_destroy": (pthread_attr_t ref) -> int
+    (* int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate); *)
+    val pthread_attr_getdetachstate = _import "pthread_attr_getdetachstate": (pthread_attr_t ref, int) -> int       
     (* pthread_attr_getguardsize *)
     (* pthread_attr_getinheritsched *)
     (* pthread_attr_getschedparam *)
@@ -36,9 +36,10 @@ structure PThread = struct
     (* pthread_attr_getstackaddr *)
     (* pthread_attr_getstacksize *)
     (* int pthread_attr_init(pthread_attr_t *attr); *)
-    val pthread_attr_init = _import "pthread_attr_init": (pthread_attr_t) -> int
+    val pthread_attr_init = _import "pthread_attr_init": (pthread_attr_t ref) -> int
     (* pthread_attr_setaffinity_np *)
-    (* pthread_attr_setdetachstate *)
+    (* int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate); *)
+    val pthread_attr_setdetachstate = _import "pthread_attr_setdetachstate": (pthread_attr_t ref, int) -> int
     (* pthread_attr_setguardsize *)
     (* pthread_attr_setinheritsched *)
     (* pthread_attr_setschedparam *)
@@ -62,12 +63,14 @@ structure PThread = struct
     (* pthread_mutex_getprioceiling *)
 
     (*** pthread_mutexattr_* ***)
-    (* pthread_mutexattr_destroy *)
+    (* int pthread_mutexattr_destroy(pthread_mutexattr_t *attr); *)
+    val pthread_mutexattr_destroy = _import "pthread_mutexattr_destroy": (pthread_mutexattr_t ref) -> int
     (* pthread_mutexattr_getprioceiling *)
     (* pthread_mutexattr_getprotocol *)
     (* pthread_mutexattr_getpshared *)
     (* pthread_mutexattr_gettype *)
-    (* pthread_mutexattr_init *)
+    (* int pthread_mutexattr_init(pthread_mutexattr_t *attr); *)
+    val pthread_mutexattr_init = _import "pthread_mutexattr_init": (pthread_mutexattr_t ref) -> int
     (* pthread_mutexattr_setprioceiling *)
     (* pthread_mutexattr_setprotocol *)
     (* pthread_mutexattr_setpshared *)
@@ -128,6 +131,7 @@ structure PThread = struct
     val pthread_setcanceltype = _import "pthread_setcanceltype": (int, int ref) -> int
     (* void pthread_testcancel(void); *)
     val pthread_testcancel = _import "pthread_testcancel": () -> ()
+
     (* cleanup_{push,pop} were defined as macros *)
     (* void pthread_cleanup_push(void (*routine)(void *), void *arg); *)
     (* val pthread_cleanup_push = _import "pthread_cleanup_push": (unit ptr -> (), unit ptr) -> () *)
@@ -136,5 +140,64 @@ structure PThread = struct
 
     val a = 1                   (* place holder for emacs indentation *)
 
+
+(* LINUX
+/* Detach state.  */
+enum
+{
+  PTHREAD_CREATE_JOINABLE,
+#define PTHREAD_CREATE_JOINABLE	PTHREAD_CREATE_JOINABLE
+  PTHREAD_CREATE_DETACHED
+#define PTHREAD_CREATE_DETACHED	PTHREAD_CREATE_DETACHED
+};
+
+/* Mutex types.  */
+enum
+{
+  PTHREAD_MUTEX_TIMED_NP,
+  PTHREAD_MUTEX_RECURSIVE_NP,
+  PTHREAD_MUTEX_ERRORCHECK_NP,
+  PTHREAD_MUTEX_ADAPTIVE_NP
+#if defined __USE_UNIX98 || defined __USE_XOPEN2K8
+  ,
+  PTHREAD_MUTEX_NORMAL = PTHREAD_MUTEX_TIMED_NP,
+  PTHREAD_MUTEX_RECURSIVE = PTHREAD_MUTEX_RECURSIVE_NP,
+  PTHREAD_MUTEX_ERRORCHECK = PTHREAD_MUTEX_ERRORCHECK_NP,
+  PTHREAD_MUTEX_DEFAULT = PTHREAD_MUTEX_NORMAL
+#endif
+#ifdef __USE_GNU
+  /* For compatibility.  */
+  , PTHREAD_MUTEX_FAST_NP = PTHREAD_MUTEX_TIMED_NP
+#endif
+};
+
+/* Read-write lock types.  */
+#if defined __USE_UNIX98 || defined __USE_XOPEN2K
+enum
+{
+  PTHREAD_RWLOCK_PREFER_READER_NP,
+  PTHREAD_RWLOCK_PREFER_WRITER_NP,
+  PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP,
+  PTHREAD_RWLOCK_DEFAULT_NP = PTHREAD_RWLOCK_PREFER_READER_NP
+};
+/* Cancellation */
+enum
+{
+  PTHREAD_CANCEL_ENABLE,
+#define PTHREAD_CANCEL_ENABLE   PTHREAD_CANCEL_ENABLE
+  PTHREAD_CANCEL_DISABLE
+#define PTHREAD_CANCEL_DISABLE  PTHREAD_CANCEL_DISABLE
+};
+enum
+{
+  PTHREAD_CANCEL_DEFERRED,
+#define PTHREAD_CANCEL_DEFERRED	PTHREAD_CANCEL_DEFERRED
+  PTHREAD_CANCEL_ASYNCHRONOUS
+#define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
+};
+#define PTHREAD_CANCELED ((void * ) -1)
+
+
+*)
 
 end

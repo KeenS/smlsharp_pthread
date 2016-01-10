@@ -15,27 +15,36 @@ structure PThread = struct
     val pthread_equal: pthread_t * pthread_t -> int
     val pthread_join: pthread_t * unit ptr ref -> int
     val pthread_detach: pthread_t -> int
-    val pthread_attr_destroy:  pthread_attr_t -> int
-    val pthread_attr_init:  pthread_attr_t -> int
-    val pthread_mutex_lock:  pthread_mutex_t ref -> int
-    val pthread_mutex_unlock:  pthread_mutex_t ref -> int
-    val pthread_mutex_init:  pthread_mutex_t ref * pthread_mutexattr_t ref -> int
-    val pthread_mutex_destroy:  pthread_mutex_t ref -> int
-    val pthread_mutexattr_settype:  pthread_mutex_t ref * int -> int
-    val pthread_cond_signal:  pthread_cond_t ref -> int
-    val pthread_cond_broadcast:  pthread_cond_t ref -> int
-    val pthread_cond_wait:  pthread_cond_t ref * pthread_mutex_t ref -> int
-    val pthread_cond_destroy:  pthread_cond_t ref -> int
-    val pthread_cond_init:  pthread_cond_t ref * pthread_condattr_t ref -> int
-    val pthread_once:  pthread_once_t ref * (unit -> unit) -> int
-    val pthread_key_create:  pthread_key_t ref * (unit ptr -> unit) -> int
-    val pthread_key_delete:  pthread_key_t -> int
-    val pthread_getspecific:  pthread_key_t -> unit ptr
-    val pthread_setspecific:  pthread_key_t * unit ptr -> int
-    val pthread_cancel:  pthread_t -> int
-    val pthread_setcancelstate:  int * int ref -> int
-    val pthread_setcanceltype:  int * int ref -> int
-    val pthread_testcancel:  unit -> unit
+
+    val pthread_attr_destroy:  pthread_attr_t ref -> int
+    val pthread_attr_getdetachstate: pthread_attr_t ref * int -> int
+    val pthread_attr_init:  pthread_attr_t ref -> int
+    val pthread_attr_setdetachstate: pthread_attr_t ref * int -> int
+
+    val pthread_mutex_lock: pthread_mutex_t ref -> int
+    val pthread_mutex_unlock: pthread_mutex_t ref -> int
+    val pthread_mutex_init: pthread_mutex_t ref * pthread_mutexattr_t ref -> int
+    val pthread_mutex_destroy: pthread_mutex_t ref -> int
+
+    val pthread_mutexattr_destroy: pthread_mutexattr_t ref -> int
+    val pthread_mutexattr_init: pthread_mutexattr_t ref -> int
+    val pthread_mutexattr_settype: pthread_mutex_t ref * int -> int
+
+    val pthread_cond_signal: pthread_cond_t ref -> int
+    val pthread_cond_broadcast: pthread_cond_t ref -> int
+    val pthread_cond_wait: pthread_cond_t ref * pthread_mutex_t ref -> int
+    val pthread_cond_destroy: pthread_cond_t ref -> int
+    val pthread_cond_init: pthread_cond_t ref * pthread_condattr_t ref -> int
+
+    val pthread_once: pthread_once_t ref * (unit -> unit) -> int
+    val pthread_key_create: pthread_key_t ref * (unit ptr -> unit) -> int
+    val pthread_key_delete: pthread_key_t -> int
+    val pthread_getspecific: pthread_key_t -> unit ptr
+    val pthread_setspecific: pthread_key_t * unit ptr -> int
+    val pthread_cancel: pthread_t -> int
+    val pthread_setcancelstate: int * int ref -> int
+    val pthread_setcanceltype: int * int ref -> int
+    val pthread_testcancel: unit -> unit
     (* val pthread_cleanup_push:  (unit ptr -> unit) * unit ptr -> unit *)
     (* val pthread_cleanup_pop:  int -> unit *)
 
