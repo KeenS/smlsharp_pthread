@@ -23,13 +23,13 @@ val () = let
     val s = pthread_create(thread_ref, ref (Pointer.NULL()), threadFunc, toUnitPtr arg)
     val t1 = !thread_ref
     val () = if s <> 0
-             then OS.Process.exit OS.Process.success
+             then raise Fail "thread creation failed"
              else ()
     val () = print "Message from main()\n";
     val resRef = ref _NULL
     val s = pthread_join(t1, resRef)
     val () = if s <> 0
-             then OS.Process.exit OS.Process.success
+             then raise Fail "thread creation failed"
              else ()
     (* val () = print ("Thread returned" ^ Int.toString  (!resRef) ^ "\n") *)
 in
