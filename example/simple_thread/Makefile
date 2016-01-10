@@ -1,6 +1,6 @@
 SMLSHARP=/usr/local/bin/smlsharp
 SMLSHARP_FLAGS=-I../src
-LDFLAGS=-lpthread
+LDFLAGS=
 SRC=simple_thread.sml
 OBJ=$(SRC:.sml=.o)
 
@@ -12,7 +12,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(MAKE) -C ../../src all
-	$(SMLSHARP)  $(ENTRY_POINT) -o $(TARGET) $(LDFLAGS)
+	$(SMLSHARP)  $(ENTRY_POINT) -o $(TARGET) $(LDFLAGS) $(LIBS)
 
 
 %.o: %.sml %.smi
