@@ -114,13 +114,18 @@ structure PThread = struct
     val pthread_cond_init = _import "pthread_cond_init": (pthread_cond_t ref, pthread_condattr_t ref) -> int
 
     (*** pthread_condattr_* ***)
-    (* pthread_condattr_destroy *)
-    (* pthread_condattr_getclock *)
-    (* pthread_condattr_getpshared *)
-    (* pthread_condattr_init *)
-    (* pthread_condattr_setclock *)
-    (* pthread_condattr_setpshared *)
-
+    (* int pthread_condattr_destroy(pthread_condattr_t *attr); *)
+    val pthread_condattr_destroy = _import "pthread_condattr_destroy": (pthread_condattr_t ref) -> int
+    (* int pthread_condattr_getclock(const pthread_condattr_t *restrict attr, clockid_t *restrict clock_id); *)
+    (* val pthread_condattr_getclock = _import "pthread_condattr_getclock": (pthread_condattr_t ref, ) *)
+    (* int pthread_condattr_getpshared(const pthread_condattr_t *restrict attr, int *restrict pshared); *)
+    val pthread_condattr_getpshared = _import "pthread_condattr_getpshared": (pthread_condattr_t ref, int ref) -> int
+    (* int pthread_condattr_init(pthread_condattr_t *attr); *)
+    val pthread_condattr_init = _import "pthread_condattr_init": (pthread_condattr_t ref) -> int
+    (* int pthread_condattr_setclock(pthread_condattr_t *attr, clockid_t clock_id); *)
+    (* val pthread_condattr_setclock = _import "pthread_condattr_setclock": (pthread_condattr_t ref, ) -> int *)
+    (* int pthread_condattr_setpshared(pthread_condattr_t *attr, int pshared); *)
+    val pthread_condattr_setpshared = _import "pthread_condattr_setpshared": (pthread_condattr_t ref, int) -> int
 
     (* TODO: barrier *)
     (* TODO: read/write lock *)

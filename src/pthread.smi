@@ -104,6 +104,14 @@ structure PThread = struct
     val pthread_cond_destroy: pthread_cond_t ref -> int
     val pthread_cond_init: pthread_cond_t ref * pthread_condattr_t ref -> int
 
+    val pthread_condattr_destroy = _import "pthread_condattr_destroy": pthread_condattr_t ref -> int
+    (* val pthread_condattr_getclock = _import "pthread_condattr_getclock": pthread_condattr_t ref *  *)
+    val pthread_condattr_getpshared = _import "pthread_condattr_getpshared": pthread_condattr_t ref * int ref -> int
+    val pthread_condattr_init = _import "pthread_condattr_init": pthread_condattr_t ref -> int
+    (* val pthread_condattr_setclock = _import "pthread_condattr_setclock": pthread_condattr_t ref *  -> int *)
+    val pthread_condattr_setpshared = _import "pthread_condattr_setpshared": pthread_condattr_t ref * int -> int
+
+
     val pthread_once: pthread_once_t ref * (unit -> unit) -> int
     val pthread_key_create: pthread_key_t ref * (unit ptr -> unit) -> int
     val pthread_key_delete: pthread_key_t -> int
