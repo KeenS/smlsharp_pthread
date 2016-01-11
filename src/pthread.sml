@@ -1,14 +1,5 @@
 structure PThread = struct
     open PThreadCompat
-    (* type pthread_t = PThreadCompat.pthread_t *)
-    (* type pthread_attr_t = PThreadCompat.pthread_attr_t *)
-    (* type pthread_mutex_t = PThreadCompat.pthread_mutex_t *)
-    (* type pthread_mutexattr_t = PThreadCompat.pthread_mutexattr_t *)
-    (* type pthread_cond_t = PThreadCompat.pthread_cond_t *)
-    (* type pthread_condattr_t = PThreadCompat.pthread_condattr_t *)
-    (* type pthread_key_t = PThreadCompat.pthread_key_t *)
-    (* type pthread_once_t = PThreadCompat.pthread_once_t *)
-
 
     (*** pthread_* ***)
     (* int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg); *)
@@ -141,65 +132,5 @@ structure PThread = struct
     (* val pthread_cleanup_pop = _import "pthread_cleanup_pop": (int) -> () *)
 
     val a = 1                   (* place holder for emacs indentation *)
-
-
-(* LINUX
-/* Detach state.  */
-enum
-{
-  PTHREAD_CREATE_JOINABLE,
-#define PTHREAD_CREATE_JOINABLE	PTHREAD_CREATE_JOINABLE
-  PTHREAD_CREATE_DETACHED
-#define PTHREAD_CREATE_DETACHED	PTHREAD_CREATE_DETACHED
-};
-
-/* Mutex types.  */
-enum
-{
-  PTHREAD_MUTEX_TIMED_NP,
-  PTHREAD_MUTEX_RECURSIVE_NP,
-  PTHREAD_MUTEX_ERRORCHECK_NP,
-  PTHREAD_MUTEX_ADAPTIVE_NP
-#if defined __USE_UNIX98 || defined __USE_XOPEN2K8
-  ,
-  PTHREAD_MUTEX_NORMAL = PTHREAD_MUTEX_TIMED_NP,
-  PTHREAD_MUTEX_RECURSIVE = PTHREAD_MUTEX_RECURSIVE_NP,
-  PTHREAD_MUTEX_ERRORCHECK = PTHREAD_MUTEX_ERRORCHECK_NP,
-  PTHREAD_MUTEX_DEFAULT = PTHREAD_MUTEX_NORMAL
-#endif
-#ifdef __USE_GNU
-  /* For compatibility.  */
-  , PTHREAD_MUTEX_FAST_NP = PTHREAD_MUTEX_TIMED_NP
-#endif
-};
-
-/* Read-write lock types.  */
-#if defined __USE_UNIX98 || defined __USE_XOPEN2K
-enum
-{
-  PTHREAD_RWLOCK_PREFER_READER_NP,
-  PTHREAD_RWLOCK_PREFER_WRITER_NP,
-  PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP,
-  PTHREAD_RWLOCK_DEFAULT_NP = PTHREAD_RWLOCK_PREFER_READER_NP
-};
-/* Cancellation */
-enum
-{
-  PTHREAD_CANCEL_ENABLE,
-#define PTHREAD_CANCEL_ENABLE   PTHREAD_CANCEL_ENABLE
-  PTHREAD_CANCEL_DISABLE
-#define PTHREAD_CANCEL_DISABLE  PTHREAD_CANCEL_DISABLE
-};
-enum
-{
-  PTHREAD_CANCEL_DEFERRED,
-#define PTHREAD_CANCEL_DEFERRED	PTHREAD_CANCEL_DEFERRED
-  PTHREAD_CANCEL_ASYNCHRONOUS
-#define PTHREAD_CANCEL_ASYNCHRONOUS	PTHREAD_CANCEL_ASYNCHRONOUS
-};
-#define PTHREAD_CANCELED ((void * ) -1)
-
-
-*)
 
 end
