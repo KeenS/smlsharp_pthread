@@ -72,15 +72,22 @@ structure PThread = struct
     (*** pthread_mutexattr_* ***)
     (* int pthread_mutexattr_destroy(pthread_mutexattr_t *attr); *)
     val pthread_mutexattr_destroy = _import "pthread_mutexattr_destroy": (pthread_mutexattr_t ref) -> int
-    (* pthread_mutexattr_getprioceiling *)
-    (* pthread_mutexattr_getprotocol *)
-    (* pthread_mutexattr_getpshared *)
-    (* pthread_mutexattr_gettype *)
+    (* int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t * restrict attr, int *restrict prioceiling); *)
+    val pthread_mutexattr_getprioceiling = _import "pthread_mutexattr_getprioceiling": (pthread_mutexattr_t ref, int ref) -> int
+    (* int pthread_mutexattr_getprotocol(const pthread_mutexattr_t * restrict attr, int *restrict protocol); *)
+    val pthread_mutexattr_getprotocol = _import "pthread_mutexattr_getprotocol": (pthread_mutexattr_t ref, int ref) -> int
+    (* int pthread_mutexattr_getpshared(const pthread_mutexattr_t * restrict attr, int *restrict pshared); *)
+    val pthread_mutexattr_getpshared = _import "pthread_mutexattr_getpshared": (pthread_mutexattr_t ref, int ref) -> int
+    (* int pthread_mutexattr_gettype(const pthread_mutexattr_t *restrict attr, int *restrict type); *)
+    val pthread_mutexattr_gettype = _import "pthread_mutexattr_gettype":(pthread_mutexattr_t ref, int ref) -> int
     (* int pthread_mutexattr_init(pthread_mutexattr_t *attr); *)
     val pthread_mutexattr_init = _import "pthread_mutexattr_init": (pthread_mutexattr_t ref) -> int
-    (* pthread_mutexattr_setprioceiling *)
-    (* pthread_mutexattr_setprotocol *)
-    (* pthread_mutexattr_setpshared *)
+    (* int pthread_mutexattr_setprioceiling(pthread_mutexattr_t *attr, int prioceiling); *)
+    val pthread_mutexattr_setprioceiling = _import "pthread_mutexattr_setprioceiling": (pthread_mutexattr_t ref, int) -> int
+    (* int pthread_mutexattr_setprotocol(pthread_mutexattr_t *attr, int protocol); *)
+    val pthread_mutexattr_setprotocol = _import "pthread_mutexattr_setprotocol": (pthread_mutexattr_t ref, int) -> int
+    (* int pthread_mutexattr_setpshared(pthread_mutexattr_t *attr, int pshared); *)
+    val pthread_mutexattr_setpshared = _import "pthread_mutexattr_setpshared": (pthread_mutexattr_t ref, int) -> int
     (* int pthread_mutexattr_settype(pthread_mutexattr_t  *attr , int type); *)
     val pthread_mutexattr_settype = _import "pthread_mutexattr_settype": (pthread_mutex_t ref, int) -> int
 
