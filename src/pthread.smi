@@ -84,6 +84,8 @@ structure PThread = struct
     val pthread_mutex_unlock: pthread_mutex_t ref -> int
     val pthread_mutex_init: pthread_mutex_t ref * pthread_mutexattr_t ref -> int
     val pthread_mutex_destroy: pthread_mutex_t ref -> int
+    val pthread_mutex_getprioceiling: pthread_mutex_t ref * int ref -> int
+    val pthread_mutex_setprioceiling: pthread_mutex_t ref * int * int ref -> int
 
     val pthread_mutexattr_destroy: pthread_mutexattr_t ref -> int
     val pthread_mutexattr_getprioceiling: pthread_mutexattr_t ref * int ref -> int

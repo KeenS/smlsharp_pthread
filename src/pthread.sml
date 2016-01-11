@@ -66,8 +66,10 @@ structure PThread = struct
     val pthread_mutex_init = _import "pthread_mutex_init": (pthread_mutex_t ref, pthread_mutexattr_t ref) -> int
     (* int pthread_mutex_destroy(pthread_mutex_t *mutex); *)
     val pthread_mutex_destroy = _import "pthread_mutex_destroy": (pthread_mutex_t ref) -> int
-    (* pthread_mutex_setprioceiling *)
-    (* pthread_mutex_getprioceiling *)
+    (* int pthread_mutex_getprioceiling(const pthread_mutex_t *restrict mutex, int *restrict prioceiling); *)
+    val pthread_mutex_getprioceiling = _import "pthread_mutex_getprioceiling": (pthread_mutex_t ref, int ref) -> int
+    (* int pthread_mutex_setprioceiling(pthread_mutex_t *restrict mutex, int prioceiling, int *restrict old_ceiling); *)
+    val pthread_mutex_setprioceiling = _import "pthread_mutex_setprioceiling": (pthread_mutex_t ref, int, int ref) -> int
 
     (*** pthread_mutexattr_* ***)
     (* int pthread_mutexattr_destroy(pthread_mutexattr_t *attr); *)
