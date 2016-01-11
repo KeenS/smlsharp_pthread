@@ -20,28 +20,42 @@ structure PThread = struct
     val pthread_attr_destroy = _import "pthread_attr_destroy": (pthread_attr_t ref) -> int
     (* int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate); *)
     val pthread_attr_getdetachstate = _import "pthread_attr_getdetachstate": (pthread_attr_t ref, int) -> int       
-    (* pthread_attr_getguardsize *)
-    (* pthread_attr_getinheritsched *)
-    (* pthread_attr_getschedparam *)
-    (* pthread_attr_getschedpolicy *)
-    (* pthread_attr_getscope *)
-    (* pthread_attr_getstack *)
-    (* pthread_attr_getstackaddr *)
-    (* pthread_attr_getstacksize *)
+    (* int pthread_attr_getguardsize(const pthread_attr_t *attr, size_t *guardsize); *)
+    val pthread_attr_getguardsize = _import "pthread_attr_getguardsize": (pthread_attr_t ref,  word ref) -> int
+    (* int pthread_attr_getinheritsched(const pthread_attr_t *attr, int *inheritsched); *)
+    val pthread_attr_getinheritsched = _import "pthread_attr_getinheritsched": (pthread_attr_t ref, int ref) -> int
+    (* int pthread_attr_getschedparam(const pthread_attr_t *attr, struct sched_param *param); *)
+    (* val pthread_attr_getschedparam = _import "pthread_attr_getschedparam": (pthread_attr_t ref, ) -> int *)
+    (* int pthread_attr_getschedpolicy(const pthread_attr_t *attr, int *policy); *)
+    val pthread_attr_getschedpolicy = _import "pthread_attr_getschedpolicy": (pthread_attr_t ref, int ref) -> int
+    (* int pthread_attr_getscope(const pthread_attr_t *attr, int *scope); *)
+    val pthread_attr_getscope = _import "pthread_attr_getscope": (pthread_attr_t ref, int ref) -> int
+    (* int pthread_attr_getstack(const pthread_attr_t *attr, void **stackaddr, size_t *stacksize) *)
+    val pthread_attr_getstack = _import "pthread_attr_getstack": (pthread_attr_t, unit ptr ref, word ref) -> int
+    (* int pthread_attr_getstackaddr(const pthread_attr_t *attr, void **stackaddr); *)
+    val pthread_attr_getstackaddr = _import "pthread_attr_getstackaddr": (pthread_attr_t, unit ptr ref) -> int
+    (* int pthread_attr_getstacksize(const pthread_attr_t *attr, size_t *stacksize); *)
+    val pthread_attr_getstacksize = _import "pthread_attr_getstacksize": (pthread_attr_t, word ref) -> int
     (* int pthread_attr_init(pthread_attr_t *attr); *)
     val pthread_attr_init = _import "pthread_attr_init": (pthread_attr_t ref) -> int
-    (* pthread_attr_setaffinity_np *)
     (* int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate); *)
     val pthread_attr_setdetachstate = _import "pthread_attr_setdetachstate": (pthread_attr_t ref, int) -> int
-    (* pthread_attr_setguardsize *)
-    (* pthread_attr_setinheritsched *)
-    (* pthread_attr_setschedparam *)
-    (* pthread_attr_setschedpolicy *)
-    (* pthread_attr_setscope *)
-    (* pthread_attr_setstack *)
-    (* pthread_attr_setstackaddr *)
-    (* pthread_attr_setstacksize *)
-
+    (* int pthread_attr_setguardsize(pthread_attr_t *attr, size_t guardsize); *)
+    val pthread_attr_setguardsize = _import "pthread_attr_setguardsize": (pthread_attr_t ref, word) -> int
+    (* int pthread_attr_setinheritsched(pthread_attr_t *attr, int inheritsched); *)
+    val pthread_attr_setinheritsched = _import "pthread_attr_setinheritsched": (pthread_attr_t ref, int) -> int
+    (* int pthread_attr_setschedparam(pthread_attr_t *attr, const struct sched_param *param); *)
+    (* val pthread_attr_setschedparam = _import "pthread_attr_setschedparam": (pthread_attr_t ref, ) -> int *)
+    (* int pthread_attr_setschedpolicy(pthread_attr_t *attr, int policy); *)
+    val pthread_attr_setschedpolicy = _import "pthread_attr_setschedpolicy": (pthread_attr_t ref, int) -> int
+    (* int pthread_attr_setscope(pthread_attr_t *attr, int scope); *)
+    val pthread_attr_setscope = _import "pthread_attr_setscope": (pthread_attr_t ref, int) -> int
+    (* int pthread_attr_setstack(pthread_attr_t *attr, void *stackaddr, size_t stacksize); *)
+    val pthread_attr_setstack = _import "pthread_attr_setstack": (pthread_attr_t ref, unit ptr, word) -> int
+    (* int pthread_attr_setstackaddr(pthread_attr_t *attr, void *stackaddr); *)
+    val pthread_attr_setstackaddr = _import "pthread_attr_setstackaddr": (pthread_attr_t ref, unit ptr) -> int
+    (* int pthread_attr_setstacksize(pthread_attr_t *attr, size_t stacksize); *)
+    val pthread_attr_setstacksize = _import "pthread_attr_setstacksize": (pthread_attr_t ref, word) -> int
 
     (*** pthread_mutex_* ***)
     (* int pthread_mutex_lock(pthread_mutex_t *mutex); *)
@@ -117,7 +131,6 @@ structure PThread = struct
     (*** cancel ***)
     (* int pthread_cancel(pthread_t thread); *)
     val pthread_cancel = _import "pthread_cancel": (pthread_t) -> int
-    (* TODO: PTHREAD_CANCEL_* enum *)
     (* int pthread_setcancelstate(int state, int *oldstate); *)
     val pthread_setcancelstate = _import "pthread_setcancelstate": (int, int ref) -> int
     (* int pthread_setcanceltype(int type, int *oldtype); *)

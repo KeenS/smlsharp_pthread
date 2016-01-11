@@ -59,10 +59,26 @@ structure PThread = struct
     val pthread_join: pthread_t * unit ptr ref -> int
     val pthread_detach: pthread_t -> int
 
-    val pthread_attr_destroy:  pthread_attr_t ref -> int
-    val pthread_attr_getdetachstate: pthread_attr_t ref * int -> int
-    val pthread_attr_init:  pthread_attr_t ref -> int
+    val pthread_attr_destroy: pthread_attr_t ref -> int
+    val pthread_attr_getdetachstate: pthread_attr_t ref * int -> int       
+    val pthread_attr_getguardsize: pthread_attr_t ref *  word ref -> int
+    val pthread_attr_getinheritsched: pthread_attr_t ref * int ref -> int
+    (* val pthread_attr_getschedparam: pthread_attr_t ref *  -> int *)
+    val pthread_attr_getschedpolicy: pthread_attr_t ref * int ref -> int
+    val pthread_attr_getscope: pthread_attr_t ref * int ref -> int
+    val pthread_attr_getstack: pthread_attr_t * unit ptr ref * word ref -> int
+    val pthread_attr_getstackaddr: pthread_attr_t * unit ptr ref -> int
+    val pthread_attr_getstacksize: pthread_attr_t * word ref -> int
+    val pthread_attr_init: pthread_attr_t ref -> int
     val pthread_attr_setdetachstate: pthread_attr_t ref * int -> int
+    val pthread_attr_setguardsize: pthread_attr_t ref * word -> int
+    val pthread_attr_setinheritsched: pthread_attr_t ref * int -> int
+    (* val pthread_attr_setschedparam: pthread_attr_t ref *  -> int *)
+    val pthread_attr_setschedpolicy: pthread_attr_t ref * int -> int
+    val pthread_attr_setscope: pthread_attr_t ref * int -> int
+    val pthread_attr_setstack: pthread_attr_t ref * unit ptr * word -> int
+    val pthread_attr_setstackaddr: pthread_attr_t ref * unit ptr -> int
+    val pthread_attr_setstacksize: pthread_attr_t ref * word -> int
 
     val pthread_mutex_lock: pthread_mutex_t ref -> int
     val pthread_mutex_unlock: pthread_mutex_t ref -> int
