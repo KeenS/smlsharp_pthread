@@ -117,7 +117,7 @@ structure PThread = struct
     (* int pthread_condattr_destroy(pthread_condattr_t *attr); *)
     val pthread_condattr_destroy = _import "pthread_condattr_destroy": (pthread_condattr_t ref) -> int
     (* int pthread_condattr_getclock(const pthread_condattr_t *restrict attr, clockid_t *restrict clock_id); *)
-    (* val pthread_condattr_getclock = _import "pthread_condattr_getclock": (pthread_condattr_t ref, ) *)
+    (* val pthread_condattr_getclock = _import "pthread_condattr_getclock": (pthread_condattr_t ref, ) -> int *)
     (* int pthread_condattr_getpshared(const pthread_condattr_t *restrict attr, int *restrict pshared); *)
     val pthread_condattr_getpshared = _import "pthread_condattr_getpshared": (pthread_condattr_t ref, int ref) -> int
     (* int pthread_condattr_init(pthread_condattr_t *attr); *)
