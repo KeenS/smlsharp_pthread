@@ -3,7 +3,7 @@ structure PThread = struct
 
     (*** pthread_* ***)
     (* int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg); *)
-    val pthread_create = _import "pthread_create" : (pthread_t ref, pthread_attr_t ref, unit ptr -> unit ptr, unit ptr) -> int
+    val pthread_create = _import "pthread_create" : (pthread_t ref, pthread_attr_t, unit ptr -> unit ptr, unit ptr) -> int
     (* void pthread_exit(void *retval); *)
     val pthread_exit = _import "pthread_exit": (unit ptr) -> ()
     (* pthread_t pthread_self(void); *)
@@ -17,19 +17,19 @@ structure PThread = struct
 
     (*** pthread_attr* ***)
     (* int pthread_attr_destroy(pthread_attr_t *attr); *)
-    val pthread_attr_destroy = _import "pthread_attr_destroy": (pthread_attr_t ref) -> int
+    val pthread_attr_destroy = _import "pthread_attr_destroy": (pthread_attr_t) -> int
     (* int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate); *)
-    val pthread_attr_getdetachstate = _import "pthread_attr_getdetachstate": (pthread_attr_t ref, int) -> int       
+    val pthread_attr_getdetachstate = _import "pthread_attr_getdetachstate": (pthread_attr_t, int) -> int       
     (* int pthread_attr_getguardsize(const pthread_attr_t *attr, size_t *guardsize); *)
-    val pthread_attr_getguardsize = _import "pthread_attr_getguardsize": (pthread_attr_t ref,  word ref) -> int
+    val pthread_attr_getguardsize = _import "pthread_attr_getguardsize": (pthread_attr_t,  word ref) -> int
     (* int pthread_attr_getinheritsched(const pthread_attr_t *attr, int *inheritsched); *)
-    val pthread_attr_getinheritsched = _import "pthread_attr_getinheritsched": (pthread_attr_t ref, int ref) -> int
+    val pthread_attr_getinheritsched = _import "pthread_attr_getinheritsched": (pthread_attr_t, int ref) -> int
     (* int pthread_attr_getschedparam(const pthread_attr_t *attr, struct sched_param *param); *)
-    (* val pthread_attr_getschedparam = _import "pthread_attr_getschedparam": (pthread_attr_t ref, ) -> int *)
+    (* val pthread_attr_getschedparam = _import "pthread_attr_getschedparam": (pthread_attr_t, ) -> int *)
     (* int pthread_attr_getschedpolicy(const pthread_attr_t *attr, int *policy); *)
-    val pthread_attr_getschedpolicy = _import "pthread_attr_getschedpolicy": (pthread_attr_t ref, int ref) -> int
+    val pthread_attr_getschedpolicy = _import "pthread_attr_getschedpolicy": (pthread_attr_t, int ref) -> int
     (* int pthread_attr_getscope(const pthread_attr_t *attr, int *scope); *)
-    val pthread_attr_getscope = _import "pthread_attr_getscope": (pthread_attr_t ref, int ref) -> int
+    val pthread_attr_getscope = _import "pthread_attr_getscope": (pthread_attr_t, int ref) -> int
     (* int pthread_attr_getstack(const pthread_attr_t *attr, void **stackaddr, size_t *stacksize) *)
     val pthread_attr_getstack = _import "pthread_attr_getstack": (pthread_attr_t, unit ptr ref, word ref) -> int
     (* int pthread_attr_getstackaddr(const pthread_attr_t *attr, void **stackaddr); *)
@@ -37,71 +37,71 @@ structure PThread = struct
     (* int pthread_attr_getstacksize(const pthread_attr_t *attr, size_t *stacksize); *)
     val pthread_attr_getstacksize = _import "pthread_attr_getstacksize": (pthread_attr_t, word ref) -> int
     (* int pthread_attr_init(pthread_attr_t *attr); *)
-    val pthread_attr_init = _import "pthread_attr_init": (pthread_attr_t ref) -> int
+    val pthread_attr_init = _import "pthread_attr_init": (pthread_attr_t) -> int
     (* int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate); *)
-    val pthread_attr_setdetachstate = _import "pthread_attr_setdetachstate": (pthread_attr_t ref, int) -> int
+    val pthread_attr_setdetachstate = _import "pthread_attr_setdetachstate": (pthread_attr_t, int) -> int
     (* int pthread_attr_setguardsize(pthread_attr_t *attr, size_t guardsize); *)
-    val pthread_attr_setguardsize = _import "pthread_attr_setguardsize": (pthread_attr_t ref, word) -> int
+    val pthread_attr_setguardsize = _import "pthread_attr_setguardsize": (pthread_attr_t, word) -> int
     (* int pthread_attr_setinheritsched(pthread_attr_t *attr, int inheritsched); *)
-    val pthread_attr_setinheritsched = _import "pthread_attr_setinheritsched": (pthread_attr_t ref, int) -> int
+    val pthread_attr_setinheritsched = _import "pthread_attr_setinheritsched": (pthread_attr_t, int) -> int
     (* int pthread_attr_setschedparam(pthread_attr_t *attr, const struct sched_param *param); *)
-    (* val pthread_attr_setschedparam = _import "pthread_attr_setschedparam": (pthread_attr_t ref, ) -> int *)
+    (* val pthread_attr_setschedparam = _import "pthread_attr_setschedparam": (pthread_attr_t, ) -> int *)
     (* int pthread_attr_setschedpolicy(pthread_attr_t *attr, int policy); *)
-    val pthread_attr_setschedpolicy = _import "pthread_attr_setschedpolicy": (pthread_attr_t ref, int) -> int
+    val pthread_attr_setschedpolicy = _import "pthread_attr_setschedpolicy": (pthread_attr_t, int) -> int
     (* int pthread_attr_setscope(pthread_attr_t *attr, int scope); *)
-    val pthread_attr_setscope = _import "pthread_attr_setscope": (pthread_attr_t ref, int) -> int
+    val pthread_attr_setscope = _import "pthread_attr_setscope": (pthread_attr_t, int) -> int
     (* int pthread_attr_setstack(pthread_attr_t *attr, void *stackaddr, size_t stacksize); *)
-    val pthread_attr_setstack = _import "pthread_attr_setstack": (pthread_attr_t ref, unit ptr, word) -> int
+    val pthread_attr_setstack = _import "pthread_attr_setstack": (pthread_attr_t, unit ptr, word) -> int
     (* int pthread_attr_setstackaddr(pthread_attr_t *attr, void *stackaddr); *)
-    val pthread_attr_setstackaddr = _import "pthread_attr_setstackaddr": (pthread_attr_t ref, unit ptr) -> int
+    val pthread_attr_setstackaddr = _import "pthread_attr_setstackaddr": (pthread_attr_t, unit ptr) -> int
     (* int pthread_attr_setstacksize(pthread_attr_t *attr, size_t stacksize); *)
-    val pthread_attr_setstacksize = _import "pthread_attr_setstacksize": (pthread_attr_t ref, word) -> int
+    val pthread_attr_setstacksize = _import "pthread_attr_setstacksize": (pthread_attr_t, word) -> int
 
     (*** pthread_mutex_* ***)
     (* int pthread_mutex_lock(pthread_mutex_t *mutex); *)
-    val pthread_mutex_lock = _import "pthread_mutex_lock": (pthread_mutex_t ref) -> int
+    val pthread_mutex_lock = _import "pthread_mutex_lock": (pthread_mutex_t) -> int
     (* int pthread_mutex_unlock(pthread_mutex_t *mutex); *)
-    val pthread_mutex_unlock = _import "pthread_mutex_unlock": (pthread_mutex_t ref) -> int
+    val pthread_mutex_unlock = _import "pthread_mutex_unlock": (pthread_mutex_t) -> int
     (* int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr); *)
-    val pthread_mutex_init = _import "pthread_mutex_init": (pthread_mutex_t ref, pthread_mutexattr_t ref) -> int
+    val pthread_mutex_init = _import "pthread_mutex_init": (pthread_mutex_t, pthread_mutexattr_t) -> int
     (* int pthread_mutex_destroy(pthread_mutex_t *mutex); *)
-    val pthread_mutex_destroy = _import "pthread_mutex_destroy": (pthread_mutex_t ref) -> int
+    val pthread_mutex_destroy = _import "pthread_mutex_destroy": (pthread_mutex_t) -> int
     (* int pthread_mutex_getprioceiling(const pthread_mutex_t *restrict mutex, int *restrict prioceiling); *)
-    val pthread_mutex_getprioceiling = _import "pthread_mutex_getprioceiling": (pthread_mutex_t ref, int ref) -> int
+    val pthread_mutex_getprioceiling = _import "pthread_mutex_getprioceiling": (pthread_mutex_t, int ref) -> int
     (* int pthread_mutex_setprioceiling(pthread_mutex_t *restrict mutex, int prioceiling, int *restrict old_ceiling); *)
-    val pthread_mutex_setprioceiling = _import "pthread_mutex_setprioceiling": (pthread_mutex_t ref, int, int ref) -> int
+    val pthread_mutex_setprioceiling = _import "pthread_mutex_setprioceiling": (pthread_mutex_t, int, int ref) -> int
 
     (*** pthread_mutexattr_* ***)
     (* int pthread_mutexattr_destroy(pthread_mutexattr_t *attr); *)
-    val pthread_mutexattr_destroy = _import "pthread_mutexattr_destroy": (pthread_mutexattr_t ref) -> int
+    val pthread_mutexattr_destroy = _import "pthread_mutexattr_destroy": (pthread_mutexattr_t) -> int
     (* int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t * restrict attr, int *restrict prioceiling); *)
-    val pthread_mutexattr_getprioceiling = _import "pthread_mutexattr_getprioceiling": (pthread_mutexattr_t ref, int ref) -> int
+    val pthread_mutexattr_getprioceiling = _import "pthread_mutexattr_getprioceiling": (pthread_mutexattr_t, int ref) -> int
     (* int pthread_mutexattr_getprotocol(const pthread_mutexattr_t * restrict attr, int *restrict protocol); *)
-    val pthread_mutexattr_getprotocol = _import "pthread_mutexattr_getprotocol": (pthread_mutexattr_t ref, int ref) -> int
+    val pthread_mutexattr_getprotocol = _import "pthread_mutexattr_getprotocol": (pthread_mutexattr_t, int ref) -> int
     (* int pthread_mutexattr_getpshared(const pthread_mutexattr_t * restrict attr, int *restrict pshared); *)
-    val pthread_mutexattr_getpshared = _import "pthread_mutexattr_getpshared": (pthread_mutexattr_t ref, int ref) -> int
+    val pthread_mutexattr_getpshared = _import "pthread_mutexattr_getpshared": (pthread_mutexattr_t, int ref) -> int
     (* int pthread_mutexattr_gettype(const pthread_mutexattr_t *restrict attr, int *restrict type); *)
-    val pthread_mutexattr_gettype = _import "pthread_mutexattr_gettype":(pthread_mutexattr_t ref, int ref) -> int
+    val pthread_mutexattr_gettype = _import "pthread_mutexattr_gettype":(pthread_mutexattr_t, int ref) -> int
     (* int pthread_mutexattr_init(pthread_mutexattr_t *attr); *)
-    val pthread_mutexattr_init = _import "pthread_mutexattr_init": (pthread_mutexattr_t ref) -> int
+    val pthread_mutexattr_init = _import "pthread_mutexattr_init": (pthread_mutexattr_t) -> int
     (* int pthread_mutexattr_setprioceiling(pthread_mutexattr_t *attr, int prioceiling); *)
-    val pthread_mutexattr_setprioceiling = _import "pthread_mutexattr_setprioceiling": (pthread_mutexattr_t ref, int) -> int
+    val pthread_mutexattr_setprioceiling = _import "pthread_mutexattr_setprioceiling": (pthread_mutexattr_t, int) -> int
     (* int pthread_mutexattr_setprotocol(pthread_mutexattr_t *attr, int protocol); *)
-    val pthread_mutexattr_setprotocol = _import "pthread_mutexattr_setprotocol": (pthread_mutexattr_t ref, int) -> int
+    val pthread_mutexattr_setprotocol = _import "pthread_mutexattr_setprotocol": (pthread_mutexattr_t, int) -> int
     (* int pthread_mutexattr_setpshared(pthread_mutexattr_t *attr, int pshared); *)
-    val pthread_mutexattr_setpshared = _import "pthread_mutexattr_setpshared": (pthread_mutexattr_t ref, int) -> int
+    val pthread_mutexattr_setpshared = _import "pthread_mutexattr_setpshared": (pthread_mutexattr_t, int) -> int
     (* int pthread_mutexattr_settype(pthread_mutexattr_t  *attr , int type); *)
-    val pthread_mutexattr_settype = _import "pthread_mutexattr_settype": (pthread_mutex_t ref, int) -> int
+    val pthread_mutexattr_settype = _import "pthread_mutexattr_settype": (pthread_mutexattr_t, int) -> int
 
     (*** pthread_cond_* ***)
     (* int pthread_cond_signal(pthread_cond_t *cond); *)
-    val pthread_cond_signal = _import "pthread_cond_signal": (pthread_cond_t ref) -> int
+    val pthread_cond_signal = _import "pthread_cond_signal": (pthread_cond_t) -> int
     (* int pthread_cond_broadcast(pthread_t *cond); *)
-    val pthread_cond_broadcast = _import "pthread_cond_broadcast": (pthread_cond_t ref) -> int
+    val pthread_cond_broadcast = _import "pthread_cond_broadcast": (pthread_cond_t) -> int
     (* int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex) *)
-    val pthread_cond_wait = _import "pthread_cond_wait": (pthread_cond_t ref, pthread_mutex_t ref) -> int
+    val pthread_cond_wait = _import "pthread_cond_wait": (pthread_cond_t, pthread_mutex_t) -> int
     (* int pthread_cond_timedwait(pthread_cond_t *cond, pthread_mutex_t *mutex, const struct timespec *abstime); *)
-    (* val pthread_cond_timedwait = _import "pthread_cond_timedwait": (pthread_cond_t ref, pthread_mutex_t ref, ) -> int *)
+    (* val pthread_cond_timedwait = _import "pthread_cond_timedwait": (pthread_cond_t, pthread_mutex_t ref, ) -> int *)
     (* timespec is defined below.
             struct timespec {
                time_t tv_sec;        /* seconds */
@@ -109,23 +109,23 @@ structure PThread = struct
            };
      *)
     (* int pthread_cond_destroy(pthread_cond_t *cond); *)
-    val pthread_cond_destroy = _import "pthread_cond_destroy": (pthread_cond_t ref) -> int
+    val pthread_cond_destroy = _import "pthread_cond_destroy": (pthread_cond_t) -> int
     (* int pthread_cond_init(pthread_cond_t *restrict cond, const pthread_condattr_t *restrict attr);*)
-    val pthread_cond_init = _import "pthread_cond_init": (pthread_cond_t ref, pthread_condattr_t ref) -> int
+    val pthread_cond_init = _import "pthread_cond_init": (pthread_cond_t, pthread_condattr_t) -> int
 
     (*** pthread_condattr_* ***)
     (* int pthread_condattr_destroy(pthread_condattr_t *attr); *)
-    val pthread_condattr_destroy = _import "pthread_condattr_destroy": (pthread_condattr_t ref) -> int
+    val pthread_condattr_destroy = _import "pthread_condattr_destroy": (pthread_condattr_t) -> int
     (* int pthread_condattr_getclock(const pthread_condattr_t *restrict attr, clockid_t *restrict clock_id); *)
     (* val pthread_condattr_getclock = _import "pthread_condattr_getclock": (pthread_condattr_t ref, ) -> int *)
     (* int pthread_condattr_getpshared(const pthread_condattr_t *restrict attr, int *restrict pshared); *)
-    val pthread_condattr_getpshared = _import "pthread_condattr_getpshared": (pthread_condattr_t ref, int ref) -> int
+    val pthread_condattr_getpshared = _import "pthread_condattr_getpshared": (pthread_condattr_t, int ref) -> int
     (* int pthread_condattr_init(pthread_condattr_t *attr); *)
-    val pthread_condattr_init = _import "pthread_condattr_init": (pthread_condattr_t ref) -> int
+    val pthread_condattr_init = _import "pthread_condattr_init": (pthread_condattr_t) -> int
     (* int pthread_condattr_setclock(pthread_condattr_t *attr, clockid_t clock_id); *)
-    (* val pthread_condattr_setclock = _import "pthread_condattr_setclock": (pthread_condattr_t ref, ) -> int *)
+    (* val pthread_condattr_setclock = _import "pthread_condattr_setclock": (pthread_condattr_t, ) -> int *)
     (* int pthread_condattr_setpshared(pthread_condattr_t *attr, int pshared); *)
-    val pthread_condattr_setpshared = _import "pthread_condattr_setpshared": (pthread_condattr_t ref, int) -> int
+    val pthread_condattr_setpshared = _import "pthread_condattr_setpshared": (pthread_condattr_t, int) -> int
 
     (* TODO: barrier *)
     (* TODO: read/write lock *)

@@ -22,7 +22,7 @@ in
 end
                    
 val () = let
-    val tattr = ref (pthread_attr_new())
+    val tattr = pthread_attr_new()
     val s = pthread_attr_init(tattr)
     val () = if s <> 0
              then exit "pthread_attr_init"

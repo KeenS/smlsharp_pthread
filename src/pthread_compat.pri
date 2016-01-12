@@ -68,7 +68,7 @@ structure PThreadCompat = struct
     *)
 
     (* ifdef linux *)
-    type pthread_t = unit ptr
+    type pthread_t = int
     type pthread_attr_t = word8 array
     type pthread_mutex_t = word8 array
     type pthread_mutexattr_t = word8 array
