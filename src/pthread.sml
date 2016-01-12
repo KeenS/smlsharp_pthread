@@ -33,7 +33,7 @@ structure PThread = struct
     (* int pthread_attr_getstack(const pthread_attr_t *attr, void **stackaddr, size_t *stacksize) *)
     val pthread_attr_getstack = _import "pthread_attr_getstack": (pthread_attr_t, unit ptr ref, word ref) -> int
     (* int pthread_attr_getstackaddr(const pthread_attr_t *attr, void **stackaddr); *)
-    val pthread_attr_getstackaddr = _import "pthread_attr_getstackaddr": (pthread_attr_t, unit ptr ref) -> int
+    (* val pthread_attr_getstackaddr = _import "pthread_attr_getstackaddr": (pthread_attr_t, unit ptr ref) -> int *)
     (* int pthread_attr_getstacksize(const pthread_attr_t *attr, size_t *stacksize); *)
     val pthread_attr_getstacksize = _import "pthread_attr_getstacksize": (pthread_attr_t, word ref) -> int
     (* int pthread_attr_init(pthread_attr_t *attr); *)
@@ -53,7 +53,7 @@ structure PThread = struct
     (* int pthread_attr_setstack(pthread_attr_t *attr, void *stackaddr, size_t stacksize); *)
     val pthread_attr_setstack = _import "pthread_attr_setstack": (pthread_attr_t, unit ptr, word) -> int
     (* int pthread_attr_setstackaddr(pthread_attr_t *attr, void *stackaddr); *)
-    val pthread_attr_setstackaddr = _import "pthread_attr_setstackaddr": (pthread_attr_t, unit ptr) -> int
+    (* val pthread_attr_setstackaddr = _import "pthread_attr_setstackaddr": (pthread_attr_t, unit ptr) -> int *)
     (* int pthread_attr_setstacksize(pthread_attr_t *attr, size_t stacksize); *)
     val pthread_attr_setstacksize = _import "pthread_attr_setstacksize": (pthread_attr_t, word) -> int
 
