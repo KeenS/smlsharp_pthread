@@ -1,0 +1,5 @@
+_require "ffi.smi"
+
+structure Escape = struct
+    val null: unit -> unit ptr
+end

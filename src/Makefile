@@ -3,7 +3,7 @@ SED=sed
 SMLSHARP=/usr/local/bin/smlsharp
 SMLSHARP_FLAGS=-I../src
 LDFLAGS=
-SRC=pthread.sml pthread_compat.prl
+SRC=pthread.sml pthread_compat.prl escapes.sml
 OBJ=$(patsubst %.sml, %.o, $(patsubst %.prl, %.sml, $(SRC)))
 
 

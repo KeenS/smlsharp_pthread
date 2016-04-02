@@ -20,13 +20,13 @@ in
     (* ret *)
     _NULL
 end
-                   
+
 val () = let
     val tattr = pthread_attr_new()
     val s = pthread_attr_init(tattr)
     val () = if s <> 0
              then exit "pthread_attr_init"
-             else ()                             
+             else ()
     val thread_ref = ref (pthread_new())
     val arg = sml_str_new "Hello world\n"
     val s = pthread_create(thread_ref, tattr, threadFunc, toUnitPtr arg)

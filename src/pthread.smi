@@ -60,7 +60,7 @@ structure PThread = struct
     val pthread_detach: pthread_t -> int
 
     val pthread_attr_destroy: pthread_attr_t -> int
-    val pthread_attr_getdetachstate: pthread_attr_t * int -> int       
+    val pthread_attr_getdetachstate: pthread_attr_t * int -> int
     val pthread_attr_getguardsize: pthread_attr_t *  word ref -> int
     val pthread_attr_getinheritsched: pthread_attr_t * int ref -> int
     (* val pthread_attr_getschedparam: pthread_attr_t *  -> int *)

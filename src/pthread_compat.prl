@@ -84,8 +84,8 @@ ifdef linux
     val $SIZEOF_PTHREAD_BARRIERATTR_T = $ __SIZEOF_PTHREAD_BARRIERATTR_T
 
     (* typedef unsigned long int pthread_t; *)
-    type pthread_t = int
-    fun pthread_new () = 0
+    type pthread_t = unit ptr
+    val pthread_new = Escape.null
 
 
      (*
